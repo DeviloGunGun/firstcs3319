@@ -1,0 +1,376 @@
+Script started on Tue 06 Nov 2018 08:03:33 PM UTC
+]0;centos@cs3319-vm069:~/assignment2[?1034h[centos@cs3319-vm069 assignment2]$ exitmysql -u root -pcs3319script fix zguan33script1 > zguan33script1.txtt[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[23Pmysql -u root -pcs3319
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 5.6.42 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> \qSELECT * FROM DealInfo;[22GPurchase;[22GDealInfo;[8G\q[K[Kshow databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| zguan33assign2db   |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> use zguan33assign2db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_zguan33assign2db |
++----------------------------+
+| Agents                     |
+| Customer                   |
+| DealInfo                   |
+| Product                    |
+| Purchase                   |
++----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> \[K-- Query1[K 1
+mysql> LECT description FROM Product;[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KSELECT description FROM Product;
++----------------+
+| description    |
++----------------+
+| Helmets        |
+| Pairs of Socks |
+| Books          |
+| Knee Pads      |
+| Elbow pads     |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> -- QUERY[K[K[K[Kuery 2[K[K[K[K[K[K[K[KSELECT description FROM Product;
++----------------+
+| description    |
++----------------+
+| Helmets        |
+| Pairs of Socks |
+| Books          |
+| Knee Pads      |
+| Elbow pads     |
++----------------+
+5 rows in set (0.00 sec)
+
+mysql> -- Query 2
+mysql> SELECT DISTINCT(city) FROM Customer;
++-------------+
+| city        |
++-------------+
+| Boston      |
+| Springfield |
+| Kypto       |
+| Providence  |
++-------------+
+4 rows in set (0.00 sec)
+
+mysql> -- Query 3
+mysql> SELECT  * FROM Agents ORDER BY city;
+SELECT SUM(quantity) AS "Total Number of Knee Pads Purchased" FROM Purchase WHERE productID = "44";
+-- Query 15
+SELECT firstName,lastName FROM Agents WHERE agentID IN (SELECT AgentID FROM DealInfo WHERE customerID IN (SELECT customerID FROM Purchase WHERE productID = "44"));+---------+-----------+-----------+-------------+----------------------+
+| agentID | firstName | lastName  | city        | commissionPercentage |
++---------+-----------+-----------+-------------+----------------------+
+| 33      | David     | Letterman | Bedrock     |                  100 |
+| 11      | Regis     | Philbin   | Boston      |                   33 |
+| 88      | Zijie     | Guan      | Harbin      |                  100 |
+| 22      | Courtney  | Cox       | New York    |                   25 |
+| 12      | Rosie     | Cox       | Ottawa      |                   50 |
+| 66      | Rosie     | ODonnell  | Ottawa      |                  100 |
+| 99      | Hugh      | Grant     | Springfield |                   16 |
++---------+-----------+-----------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> -- Query 4
+mysql> SELECT firstName, lastName FROM Customer WHERE city = "Springfield";
++-----------+----------+
+| firstName | lastName |
++-----------+----------+
+| Monty     | Burns    |
+| Homer     | Simpson  |
+| Sideshow  | Bob      |
++-----------+----------+
+3 rows in set (0.01 sec)
+
+mysql> -- Query 5
+mysql> SELECT lastName FROM Customer WHERE customerID = any(SELECT customerID FR OM DealInfo WHERE agentID = any(SELECT agentID FROM Agents WHERE firstName = "Re gis"));
++------------+
+| lastName   |
++------------+
+| Rubble     |
+| Flintstone |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> -- Query 6
+mysql> SELECT description FROM Product WHERE description LIKE '%pad%' ;
++-------------+
+| description |
++-------------+
+| Knee Pads   |
+| Elbow pads  |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> -- Query 7
+mysql> SELECT Customer.lastName, Product.description, Purchase.quantity FROM Cus tomer,Product,Purchase WHERE Customer.customerID = any(SELECT customerID FROM Pu rchase WHERE quantity > 0)  AND Product.productID = any(SELECT productID FROM Pu rchase WHERE quantity > 0);
++------------+----------------+----------+
+| lastName   | description    | quantity |
++------------+----------------+----------+
+| Simpson    | Helmets        |       20 |
+| Simpson    | Helmets        |       19 |
+| Simpson    | Helmets        |       14 |
+| Simpson    | Helmets        |       10 |
+| Simpson    | Helmets        |        5 |
+| Simpson    | Helmets        |        5 |
+| Simpson    | Helmets        |        5 |
+| Simpson    | Helmets        |        5 |
+| Simpson    | Helmets        |        2 |
+| Simpson    | Helmets        |        2 |
+| Griffens   | Helmets        |       20 |
+| Griffens   | Helmets        |       19 |
+| Griffens   | Helmets        |       14 |
+| Griffens   | Helmets        |       10 |
+| Griffens   | Helmets        |        5 |
+| Griffens   | Helmets        |        5 |
+| Griffens   | Helmets        |        5 |
+| Griffens   | Helmets        |        5 |
+| Griffens   | Helmets        |        2 |
+| Griffens   | Helmets        |        2 |
+| Bob        | Helmets        |       20 |
+| Bob        | Helmets        |       19 |
+| Bob        | Helmets        |       14 |
+| Bob        | Helmets        |       10 |
+| Bob        | Helmets        |        5 |
+| Bob        | Helmets        |        5 |
+| Bob        | Helmets        |        5 |
+| Bob        | Helmets        |        5 |
+| Bob        | Helmets        |        2 |
+| Bob        | Helmets        |        2 |
+| Flintstone | Helmets        |       20 |
+| Flintstone | Helmets        |       19 |
+| Flintstone | Helmets        |       14 |
+| Flintstone | Helmets        |       10 |
+| Flintstone | Helmets        |        5 |
+| Flintstone | Helmets        |        5 |
+| Flintstone | Helmets        |        5 |
+| Flintstone | Helmets        |        5 |
+| Flintstone | Helmets        |        2 |
+| Flintstone | Helmets        |        2 |
+| Simpson    | Pairs of Socks |       20 |
+| Simpson    | Pairs of Socks |       19 |
+| Simpson    | Pairs of Socks |       14 |
+| Simpson    | Pairs of Socks |       10 |
+| Simpson    | Pairs of Socks |        5 |
+| Simpson    | Pairs of Socks |        5 |
+| Simpson    | Pairs of Socks |        5 |
+| Simpson    | Pairs of Socks |        5 |
+| Simpson    | Pairs of Socks |        2 |
+| Simpson    | Pairs of Socks |        2 |
+| Griffens   | Pairs of Socks |       20 |
+| Griffens   | Pairs of Socks |       19 |
+| Griffens   | Pairs of Socks |       14 |
+| Griffens   | Pairs of Socks |       10 |
+| Griffens   | Pairs of Socks |        5 |
+| Griffens   | Pairs of Socks |        5 |
+| Griffens   | Pairs of Socks |        5 |
+| Griffens   | Pairs of Socks |        5 |
+| Griffens   | Pairs of Socks |        2 |
+| Griffens   | Pairs of Socks |        2 |
+| Bob        | Pairs of Socks |       20 |
+| Bob        | Pairs of Socks |       19 |
+| Bob        | Pairs of Socks |       14 |
+| Bob        | Pairs of Socks |       10 |
+| Bob        | Pairs of Socks |        5 |
+| Bob        | Pairs of Socks |        5 |
+| Bob        | Pairs of Socks |        5 |
+| Bob        | Pairs of Socks |        5 |
+| Bob        | Pairs of Socks |        2 |
+| Bob        | Pairs of Socks |        2 |
+| Flintstone | Pairs of Socks |       20 |
+| Flintstone | Pairs of Socks |       19 |
+| Flintstone | Pairs of Socks |       14 |
+| Flintstone | Pairs of Socks |       10 |
+| Flintstone | Pairs of Socks |        5 |
+| Flintstone | Pairs of Socks |        5 |
+| Flintstone | Pairs of Socks |        5 |
+| Flintstone | Pairs of Socks |        5 |
+| Flintstone | Pairs of Socks |        2 |
+| Flintstone | Pairs of Socks |        2 |
+| Simpson    | Knee Pads      |       20 |
+| Simpson    | Knee Pads      |       19 |
+| Simpson    | Knee Pads      |       14 |
+| Simpson    | Knee Pads      |       10 |
+| Simpson    | Knee Pads      |        5 |
+| Simpson    | Knee Pads      |        5 |
+| Simpson    | Knee Pads      |        5 |
+| Simpson    | Knee Pads      |        5 |
+| Simpson    | Knee Pads      |        2 |
+| Simpson    | Knee Pads      |        2 |
+| Griffens   | Knee Pads      |       20 |
+| Griffens   | Knee Pads      |       19 |
+| Griffens   | Knee Pads      |       14 |
+| Griffens   | Knee Pads      |       10 |
+| Griffens   | Knee Pads      |        5 |
+| Griffens   | Knee Pads      |        5 |
+| Griffens   | Knee Pads      |        5 |
+| Griffens   | Knee Pads      |        5 |
+| Griffens   | Knee Pads      |        2 |
+| Griffens   | Knee Pads      |        2 |
+| Bob        | Knee Pads      |       20 |
+| Bob        | Knee Pads      |       19 |
+| Bob        | Knee Pads      |       14 |
+| Bob        | Knee Pads      |       10 |
+| Bob        | Knee Pads      |        5 |
+| Bob        | Knee Pads      |        5 |
+| Bob        | Knee Pads      |        5 |
+| Bob        | Knee Pads      |        5 |
+| Bob        | Knee Pads      |        2 |
+| Bob        | Knee Pads      |        2 |
+| Flintstone | Knee Pads      |       20 |
+| Flintstone | Knee Pads      |       19 |
+| Flintstone | Knee Pads      |       14 |
+| Flintstone | Knee Pads      |       10 |
+| Flintstone | Knee Pads      |        5 |
+| Flintstone | Knee Pads      |        5 |
+| Flintstone | Knee Pads      |        5 |
+| Flintstone | Knee Pads      |        5 |
+| Flintstone | Knee Pads      |        2 |
+| Flintstone | Knee Pads      |        2 |
+| Simpson    | Elbow pads     |       20 |
+| Simpson    | Elbow pads     |       19 |
+| Simpson    | Elbow pads     |       14 |
+| Simpson    | Elbow pads     |       10 |
+| Simpson    | Elbow pads     |        5 |
+| Simpson    | Elbow pads     |        5 |
+| Simpson    | Elbow pads     |        5 |
+| Simpson    | Elbow pads     |        5 |
+| Simpson    | Elbow pads     |        2 |
+| Simpson    | Elbow pads     |        2 |
+| Griffens   | Elbow pads     |       20 |
+| Griffens   | Elbow pads     |       19 |
+| Griffens   | Elbow pads     |       14 |
+| Griffens   | Elbow pads     |       10 |
+| Griffens   | Elbow pads     |        5 |
+| Griffens   | Elbow pads     |        5 |
+| Griffens   | Elbow pads     |        5 |
+| Griffens   | Elbow pads     |        5 |
+| Griffens   | Elbow pads     |        2 |
+| Griffens   | Elbow pads     |        2 |
+| Bob        | Elbow pads     |       20 |
+| Bob        | Elbow pads     |       19 |
+| Bob        | Elbow pads     |       14 |
+| Bob        | Elbow pads     |       10 |
+| Bob        | Elbow pads     |        5 |
+| Bob        | Elbow pads     |        5 |
+| Bob        | Elbow pads     |        5 |
+| Bob        | Elbow pads     |        5 |
+| Bob        | Elbow pads     |        2 |
+| Bob        | Elbow pads     |        2 |
+| Flintstone | Elbow pads     |       20 |
+| Flintstone | Elbow pads     |       19 |
+| Flintstone | Elbow pads     |       14 |
+| Flintstone | Elbow pads     |       10 |
+| Flintstone | Elbow pads     |        5 |
+| Flintstone | Elbow pads     |        5 |
+| Flintstone | Elbow pads     |        5 |
+| Flintstone | Elbow pads     |        5 |
+| Flintstone | Elbow pads     |        2 |
+| Flintstone | Elbow pads     |        2 |
++------------+----------------+----------+
+160 rows in set (0.00 sec)
+
+mysql> -- Query 8
+mysql> SELECT SUM(Purchase.quantity) AS 'Homer Total Purchases' FROM Purchase WH ERE customerID = any(SELECT customerID FROM Customer WHERE firstName = "Homer"); 
++-----------------------+
+| Homer Total Purchases |
++-----------------------+
+|                    44 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> -- Query 9
+mysql> SELECT Customer.firstName, Customer.lastName, SUM(Purchase.quantity) FROM  Purchase,Customer WHERE Customer.customerID = Purchase.customerID GROUP BY Cust omer.customerID; 
++-----------+------------+------------------------+
+| firstName | lastName   | SUM(Purchase.quantity) |
++-----------+------------+------------------------+
+| Peter     | Griffens   |                     19 |
+| Fred      | Flintstone |                      4 |
+| Homer     | Simpson    |                     44 |
+| Sideshow  | Bob        |                     20 |
++-----------+------------+------------------------+
+4 rows in set (0.00 sec)
+
+mysql> -- Query 10
+mysql> SELECT description,quantity AS ' not purchased' FROM Product WHERE produc tID NOT IN (SELECT productID FROM Purchase);
++-------------+---------------+
+| description | not purchased |
++-------------+---------------+
+| Books       | 160           |
++-------------+---------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> -- Query 11
+mysql> SELECT description, quantity FROM Product WHERE productID NOT IN (SELECT  Purchase.productID FROM Purchase,Customer WHERE Purchase.customerID = Customer.c ustomerID AND Customer.firstName = "Fred" AND Customer.lastName = "Flintstone"); 
++----------------+----------+
+| description    | quantity |
++----------------+----------+
+| Helmets        | 230      |
+| Pairs of Socks | 135      |
+| Books          | 160      |
++----------------+----------+
+3 rows in set (0.01 sec)
+
+mysql> -- Query 12
+mysql> SELECT Agents.firstName,Agents.lastName AS 'Agent Name',Customer.firstNam e,Customer.lastName AS 'Customer Name' FROM Agents, Customer WHERE Agents.city =  Customer.city;
++-----------+------------+-----------+---------------+
+| firstName | Agent Name | firstName | Customer Name |
++-----------+------------+-----------+---------------+
+| Regis     | Philbin    | Barney    | Rubble        |
+| Hugh      | Grant      | Monty     | Burns         |
+| Regis     | Philbin    | Fred      | Flintstone    |
+| Hugh      | Grant      | Homer     | Simpson       |
+| Hugh      | Grant      | Sideshow  | Bob           |
++-----------+------------+-----------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> -- Query 13
+mysql> SELECT SUM(quantity) AS "Total Number of Knee Pads Purchased" FROM Purcha se WHERE productID = "44";
++-------------------------------------+
+| Total Number of Knee Pads Purchased |
++-------------------------------------+
+|                                   7 |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> -- Query 15
+mysql> SELECT firstName,lastName FROM Agents WHERE agentID IN (SELECT AgentID FR OM DealInfo WHERE customerID IN (SELECT customerID FROM Purchase WHERE productID  = "44"));
++-----------+----------+
+| firstName | lastName |
++-----------+----------+
+| Regis     | Philbin  |
+| Rosie     | ODonnell |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> \q
+Bye
+]0;centos@cs3319-vm069:~/assignment2[centos@cs3319-vm069 assignment2]$ exit
+exit
+
+Script done on Tue 06 Nov 2018 08:06:40 PM UTC

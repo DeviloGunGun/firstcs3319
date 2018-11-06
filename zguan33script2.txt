@@ -1,0 +1,374 @@
+Script started on Tue 06 Nov 2018 07:57:32 PM UTC
+]0;centos@cs3319-vm069:~/assignment2[?1034h[centos@cs3319-vm069 assignment2]$ script fix zguan33script1 > zguan33script1.txtt[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cls[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo mysql --verbose -pcs3319< zguan33script1..txt>zguan33outputscript1.txt 2>&1[C[C[C[C[1@ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Als[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cvi zguan33script1ls[Kscript zguan33script1[7Pcd assignment2ls[Kmkdir assignment2cd ~[Kmysql -u root -pcs3319[9Pscript test11mysql -u root -pcs3319
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 5.6.42 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> sjpw [K[K[Khow databaes[K[Kses;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| zguan33assign2db   |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> use zguan33assign2db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_zguan33assign2db |
++----------------------------+
+| Agents                     |
+| Customer                   |
+| DealInfo                   |
+| Product                    |
+| Purchase                   |
++----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO Product (productID, description, costPerItem, quantity) VALUE  ("66", "Elbow pads", "14.25",120);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Product (productID, description, costPerItem, quantity) VALUE  ("33", "Books", "22.5",160);
+INSERT INTO Product (productID, description, costPerItem, quantity) VALUE ("11", "Helmets", "13", 230);
+INSERT INTO Product (productID, description, costPerItem, quantity) VALUE ("22", "Pairs of Socks", "21.5", 135);
+INSERT INTO Product (productID, description, costPerItem, quantity) VALUE ("44", "Knee Pads", "17", 155);
+
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Product (productID, description, costPerItem, quantity) VALUE  ("11", "Helmets", "13", 230);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Product (productID, description, costPerItem, quantity) VALUE  ("22", "Pairs of Socks", "21.5", 135);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Product (productID, description, costPerItem, quantity) VALUE  ("44", "Knee Pads", "17", 155);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> 
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("99", "Hugh", "Grant", "Springfield", 16);
+INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercentage) VALUE("22", "Courtney", "Cox", "New York", 25);
+INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercentage) VALUE("66", "Rosie", "ODonnell", "Ottawa", 100);
+INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercentage) VALUE("33", "David", "Letterman", "Bedrock", 100);
+INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercentage) VALUE("11", "Regis", "Philbin",  "Boston", 33);
+INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercentage) VALUE("12", "Rosie", "Cox",  "Ottawa", 50);
+INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercentage) VALUE("88", "Zijie", "Guan", "Harbin", 100);
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("21","Homer","Simpson","Springfield","686-8956");
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("31", "Sideshow", "Bob", "Springfield", "686-5555");
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("12", "Monty", "Burns", "Springfield", "789-0000");
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("15", "Fred", "Flintstone", "Bedrock", "777-2345");
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("13", "Super", "Man", "Kypto", "888-1234");
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("10", "Barney", "Rubble", "Bedrock", "777-1234");
+INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber) VALUE("14","Peter", "Griffens", "Providence", "987-4567");
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("1", "21","11",20);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("2","21","22",14);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("3","21","66",10);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("4","31","11",1);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("5","31","22",2);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("6","31","44",4);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("7","31","66",2);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("8","15","66",2);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("9","15","44",2);
+INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE("10","14","66",19);
+
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("1","21","99");
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("2","12","99");
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("3","14","99");
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("4","13","33");
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("5","10","11");
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("6","15","11");
+INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("7","31","66");Query OK, 1 row affected (0.97 sec)
+
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("22", "Courtney", "Cox", "New York", 25);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("66", "Rosie", "ODonnell", "Ottawa", 100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("33", "David", "Letterman", "Bedrock", 100);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("11", "Regis", "Philbin",  "Boston", 33);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("12", "Rosie", "Cox",  "Ottawa", 50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Agents (agentID, firstName, lastName, city, commissionPercent age) VALUE("88", "Zijie", "Guan", "Harbin", 100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("21","Homer","Simpson","Springfield","686-8956");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("31", "Sideshow", "Bob", "Springfield", "686-5555");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("12", "Monty", "Burns", "Springfield", "789-0000");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("15", "Fred", "Flintstone", "Bedrock", "777-2345");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("13", "Super", "Man", "Kypto", "888-1234");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("10", "Barney", "Rubble", "Bedrock", "777-1234");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Customer (customerID, firstName, lastName, city, phoneNumber)  VALUE("14","Peter", "Griffens", "Providence", "987-4567");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 1", "21","11",20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 2","21","22",14);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 3","21","66",10);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 4","31","11",1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 5","31","22",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 6","31","44",4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 7","31","66",2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 8","15","66",2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 9","15","44",2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO Purchase (purchaseID, customerID, productID,quantity) VALUE(" 10","14","66",19);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> 
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("1","21","99 ");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("2","12","99 ");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("3","14","99 ");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("4","13","33 ");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("5","10","11 ");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("6","15","11 ");
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO DealInfo(dealinfoID, customerID, agentID) VALUE ("7","31","66 ");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> 
+mysql> show tables;
++----------------------------+
+| Tables_in_zguan33assign2db |
++----------------------------+
+| Agents                     |
+| Customer                   |
+| DealInfo                   |
+| Product                    |
+| Purchase                   |
++----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> select[K[K[K[K[K[KSELECT * FROM CU[Kustomer;
++------------+-----------+------------+-------------+-------------+
+| customerID | firstName | lastNAME   | city        | phoneNumber |
++------------+-----------+------------+-------------+-------------+
+| 10         | Barney    | Rubble     | Bedrock     | 777-1234    |
+| 12         | Monty     | Burns      | Springfield | 789-0000    |
+| 13         | Super     | Man        | Kypto       | 888-1234    |
+| 14         | Peter     | Griffens   | Providence  | 987-4567    |
+| 15         | Fred      | Flintstone | Bedrock     | 777-2345    |
+| 21         | Homer     | Simpson    | Springfield | 686-8956    |
+| 31         | Sideshow  | Bob        | Springfield | 686-5555    |
++------------+-----------+------------+-------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * R[KFROM Purchase[K[K[K[K[K[K[K[KPur[K[Kroduct;
++-----------+----------------+-------------+----------+
+| productID | description    | costPerItem | quantity |
++-----------+----------------+-------------+----------+
+| 11        | Helmets        | 13          | 230      |
+| 22        | Pairs of Socks | 21.5        | 135      |
+| 33        | Books          | 22.5        | 160      |
+| 44        | Knee Pads      | 17          | 155      |
+| 66        | Elbow pads     | 14.25       | 120      |
++-----------+----------------+-------------+----------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Product;;[K;[K;[K;[K;[K;[K;[KA;g;e;n;t;s;
++---------+-----------+-----------+-------------+----------------------+
+| agentID | firstName | lastName  | city        | commissionPercentage |
++---------+-----------+-----------+-------------+----------------------+
+| 11      | Regis     | Philbin   | Boston      |                   33 |
+| 12      | Rosie     | Cox       | Ottawa      |                   50 |
+| 22      | Courtney  | Cox       | New York    |                   25 |
+| 33      | David     | Letterman | Bedrock     |                  100 |
+| 66      | Rosie     | ODonnell  | Ottawa      |                  100 |
+| 88      | Zijie     | Guan      | Harbin      |                  100 |
+| 99      | Hugh      | Grant     | Springfield |                   16 |
++---------+-----------+-----------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Agents;[22GProduct;[22GAgents;[K[K[K[K[K[K[K[K Purchase;
++------------+------------+-----------+----------+
+| purchaseID | customerID | productID | quantity |
++------------+------------+-----------+----------+
+| 1          | 21         | 11        |       20 |
+| 10         | 14         | 66        |       19 |
+| 2          | 21         | 22        |       14 |
+| 3          | 21         | 66        |       10 |
+| 4          | 31         | 11        |        1 |
+| 5          | 31         | 22        |        2 |
+| 6          | 31         | 44        |        4 |
+| 7          | 31         | 66        |        2 |
+| 8          | 15         | 66        |        2 |
+| 9          | 15         | 44        |        2 |
++------------+------------+-----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Purchase;;[K;[K;[K;[K;[K;[K;[K;[Kd;;[KD;e;a;s;;[Kl;I;n;f;o;
++------------+------------+---------+
+| dealinfoID | customerID | agentID |
++------------+------------+---------+
+| 1          | 21         | 99      |
+| 2          | 12         | 99      |
+| 3          | 14         | 99      |
+| 4          | 13         | 33      |
+| 5          | 10         | 11      |
+| 6          | 15         | 11      |
+| 7          | 31         | 66      |
++------------+------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> UPDATE Customer SET firstName = "Wonder" WHERE lastName = "Man";
+UPDATE Customer SET lastName = "Woman" WHERE firstName = "Wonder";
+
+UPDATE Purchase SET quantity = 5 WHERE customerID = (SELECT customerID FROM Customer WHERE Customer.firstName = "Sideshow");
+UPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT customerID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE Agents.firstName = "Regis"));Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE Customer SET lastName = "Woman" WHERE firstName = "Wonder";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> 
+mysql> UPDATE Purchase SET quantity = 5 WHERE customerID = (SELECT customerID FR OM Customer WHERE Customer.firstName = "Sideshow");
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> UPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> UPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FRr[81GOM Customer WHERE Customer.firstName = "Sideshow");[K[80G g[K[A[52G[A[15GCustomer SET lastName = "Woman" WHERE firstName = "Wonder";[K[80G O[K[A[74G[28G[25P[47G" WHERE lastName = "Man";[8GSELECT * FROM DealInfo;[K[22GPurchase;[22GAgents;[K[22GProduct;[22GCustomer;
++------------+-----------+------------+-------------+-------------+
+| customerID | firstName | lastNAME   | city        | phoneNumber |
++------------+-----------+------------+-------------+-------------+
+| 10         | Barney    | Rubble     | Boston      | 777-1234    |
+| 12         | Monty     | Burns      | Springfield | 789-0000    |
+| 13         | Wonder    | Woman      | Kypto       | 888-1234    |
+| 14         | Peter     | Griffens   | Providence  | 987-4567    |
+| 15         | Fred      | Flintstone | Boston      | 777-2345    |
+| 21         | Homer     | Simpson    | Springfield | 686-8956    |
+| 31         | Sideshow  | Bob        | Springfield | 686-5555    |
++------------+-----------+------------+-------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Customer;[8GUPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FRr[81GOM Customer WHERE Customer.firstName = "Sideshow");[K[80G g[K[A[52G[A[15GCustomer SET lastName = "Woman" WHERE firstName = "Wonder";[K[80G O[K[A[74G[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FR OM Customer WHERE Customer.firstName = "Sideshow");[A[15GCustomer SET city = "Boston" WHERE customerID = any(SELECT customeO[81GrID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[8GSELECT * FROM Customer;[K[80G r[K
+[K[2A[31G[8GUPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FRr[81GOM Customer WHERE Customer.firstName = "Sideshow");[K[80G g[K[A[52G[A[15GCustomer SET lastName = "Woman" WHERE firstName = "Wonder";[K[80G O[K[A[74G[28G[25P[47G" WHERE lastName = "Man";[8GSELECT * FROM DealInfo;[K[22GPurchase;[22GAgents;[K[22GProduct;[22GCustomer;[22GProduct;[K
++-----------+----------------+-------------+----------+
+| productID | description    | costPerItem | quantity |
++-----------+----------------+-------------+----------+
+| 11        | Helmets        | 13          | 230      |
+| 22        | Pairs of Socks | 21.5        | 135      |
+| 33        | Books          | 22.5        | 160      |
+| 44        | Knee Pads      | 17          | 155      |
+| 66        | Elbow pads     | 14.25       | 120      |
++-----------+----------------+-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Product;[22GCustomer;[8GUPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FRr[81GOM Customer WHERE Customer.firstName = "Sideshow");[K[80G g[K[A[52G[A[15GCustomer SET lastName = "Woman" WHERE firstName = "Wonder";[K[80G O[K[A[74G[28G[25P[47G" WHERE lastName = "Man";[8GSELECT * FROM DealInfo;[K[22GPurchase;[22GAgents;[K[22GProduct;[22GAgents;[K
++---------+-----------+-----------+-------------+----------------------+
+| agentID | firstName | lastName  | city        | commissionPercentage |
++---------+-----------+-----------+-------------+----------------------+
+| 11      | Regis     | Philbin   | Boston      |                   33 |
+| 12      | Rosie     | Cox       | Ottawa      |                   50 |
+| 22      | Courtney  | Cox       | New York    |                   25 |
+| 33      | David     | Letterman | Bedrock     |                  100 |
+| 66      | Rosie     | ODonnell  | Ottawa      |                  100 |
+| 88      | Zijie     | Guan      | Harbin      |                  100 |
+| 99      | Hugh      | Grant     | Springfield |                   16 |
++---------+-----------+-----------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Agents;[22GProduct;[22GCustomer;[8GUPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FRr[81GOM Customer WHERE Customer.firstName = "Sideshow");[K[80G g[K[A[52G[A[15GCustomer SET lastName = "Woman" WHERE firstName = "Wonder";[K[80G O[K[A[74G[28G[25P[47G" WHERE lastName = "Man";[8GSELECT * FROM DealInfo;[K[22GPurchase;[22GAgents;[K[22GProduct;[22GCustomer;[22GProduct;[K[22GAgents;[K[22GPurchase;
++------------+------------+-----------+----------+
+| purchaseID | customerID | productID | quantity |
++------------+------------+-----------+----------+
+| 1          | 21         | 11        |       20 |
+| 10         | 14         | 66        |       19 |
+| 2          | 21         | 22        |       14 |
+| 3          | 21         | 66        |       10 |
+| 4          | 31         | 11        |        5 |
+| 5          | 31         | 22        |        5 |
+| 6          | 31         | 44        |        5 |
+| 7          | 31         | 66        |        5 |
+| 8          | 15         | 66        |        2 |
+| 9          | 15         | 44        |        2 |
++------------+------------+-----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Purchase;[22GAgents;[K[22GProduct;[22GCustomer;[8GUPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[8GSELECT * FROM Customer;[K[80G r[K
+[K[2A[31G[22GProduct;[K[22GAgents;[K[22GProduct;[22GCustomer;[8GUPDATE Customer SET city = "Boston" WHERE customerID = any(SELECT custome rID FROM DealInfo WHERE DealInfo.agentID =any(SELECT agentID FROM Agents WHERE A gents.firstName = "Regis"));[2A[15GPurchase SET quantity = 5 WHERE customerID = (SELECT customerID FRr[81GOM Customer WHERE Customer.firstName = "Sideshow");[K[80G g[K[A[52G[A[15GCustomer SET lastName = "Woman" WHERE firstName = "Wonder";[K[80G O[K[A[74G[28G[25P[47G" WHERE lastName = "Man";[8GSELECT * FROM DealInfo;[K[22GPurchase;[22GAgents;[K[22GPurchase;[22GDealInfo;
++------------+------------+---------+
+| dealinfoID | customerID | agentID |
++------------+------------+---------+
+| 1          | 21         | 99      |
+| 2          | 12         | 99      |
+| 3          | 14         | 99      |
+| 4          | 13         | 33      |
+| 5          | 10         | 11      |
+| 6          | 15         | 11      |
+| 7          | 31         | 66      |
++------------+------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> \q
+Bye
+]0;centos@cs3319-vm069:~/assignment2[centos@cs3319-vm069 assignment2]$ exit
+exit
+
+Script done on Tue 06 Nov 2018 08:01:56 PM UTC

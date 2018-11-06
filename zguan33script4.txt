@@ -1,0 +1,168 @@
+Script started on Tue 06 Nov 2018 08:07:37 PM UTC
+]0;centos@cs3319-vm069:~/assignment2[?1034h[centos@cs3319-vm069 assignment2]$ exitmysql -u root -pcs3319
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.6.42 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show date[K[Ktabases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| zguan33assign2db   |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> use zguan33assign2db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_zguan33assign2db |
++----------------------------+
+| Agents                     |
+| Customer                   |
+| DealInfo                   |
+| Product                    |
+| Purchase                   |
++----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> --show all table
+    -> SELECT * FROM Agents;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--show all table
+SELECT * FROM Agents' at line 1
+mysql> SELECT * FROM Customer;
++------------+-----------+------------+-------------+-------------+
+| customerID | firstName | lastNAME   | city        | phoneNumber |
++------------+-----------+------------+-------------+-------------+
+| 10         | Barney    | Rubble     | Boston      | 777-1234    |
+| 12         | Monty     | Burns      | Springfield | 789-0000    |
+| 13         | Wonder    | Woman      | Kypto       | 888-1234    |
+| 14         | Peter     | Griffens   | Providence  | 987-4567    |
+| 15         | Fred      | Flintstone | Boston      | 777-2345    |
+| 21         | Homer     | Simpson    | Springfield | 686-8956    |
+| 31         | Sideshow  | Bob        | Springfield | 686-5555    |
++------------+-----------+------------+-------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Product;
++-----------+----------------+-------------+----------+
+| productID | description    | costPerItem | quantity |
++-----------+----------------+-------------+----------+
+| 11        | Helmets        | 13          | 230      |
+| 22        | Pairs of Socks | 21.5        | 135      |
+| 33        | Books          | 22.5        | 160      |
+| 44        | Knee Pads      | 17          | 155      |
+| 66        | Elbow pads     | 14.25       | 120      |
++-----------+----------------+-------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Purchase;
++------------+------------+-----------+----------+
+| purchaseID | customerID | productID | quantity |
++------------+------------+-----------+----------+
+| 1          | 21         | 11        |       20 |
+| 10         | 14         | 66        |       19 |
+| 2          | 21         | 22        |       14 |
+| 3          | 21         | 66        |       10 |
+| 4          | 31         | 11        |        5 |
+| 5          | 31         | 22        |        5 |
+| 6          | 31         | 44        |        5 |
+| 7          | 31         | 66        |        5 |
+| 8          | 15         | 66        |        2 |
+| 9          | 15         | 44        |        2 |
++------------+------------+-----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM DealInfo;
++------------+------------+---------+
+| dealinfoID | customerID | agentID |
++------------+------------+---------+
+| 1          | 21         | 99      |
+| 2          | 12         | 99      |
+| 3          | 14         | 99      |
+| 4          | 13         | 33      |
+| 5          | 10         | 11      |
+| 6          | 15         | 11      |
+| 7          | 31         | 66      |
++------------+------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> CREATE VIEW CustomerPurchaseInfo AS SELECT Customer.firstName, Customer.l astName, Product.description,Purchase.quantity,Product.costPerItem * Purchase.qu antity AS Finalprice FROM Customer, Purchase,Product WHERE Purchase.ProductID =  Product.productID AND Purchase.customerID = Customer.customerID ORDER BY Custome r.lastName;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> --show the view after create it
+    -> SELECT * FROM CustomerPurchaseInfo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--show the view after create it
+SELECT * FROM CustomerPurchaseInfo' at line 1
+mysql> SELECT * FROM CustomerPurchaseInfo WHERE Finalprice > 100;
++-----------+----------+----------------+----------+------------+
+| firstName | lastName | description    | quantity | Finalprice |
++-----------+----------+----------------+----------+------------+
+| Sideshow  | Bob      | Pairs of Socks |        5 |      107.5 |
+| Peter     | Griffens | Elbow pads     |       19 |     270.75 |
+| Homer     | Simpson  | Helmets        |       20 |        260 |
+| Homer     | Simpson  | Elbow pads     |       10 |      142.5 |
+| Homer     | Simpson  | Pairs of Socks |       14 |        301 |
++-----------+----------+----------------+----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> --show the product table before delete it
+    -> SELECT * FROM Product;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--show the product table before delete it
+SELECT * FROM Product' at line 1
+mysql> DELETE  FROM Product WHERE description = "Books";
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM Product;
++-----------+----------------+-------------+----------+
+| productID | description    | costPerItem | quantity |
++-----------+----------------+-------------+----------+
+| 11        | Helmets        | 13          | 230      |
+| 22        | Pairs of Socks | 21.5        | 135      |
+| 44        | Knee Pads      | 17          | 155      |
+| 66        | Elbow pads     | 14.25       | 120      |
++-----------+----------------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> --show the agents table before delete it
+    -> SELECT * FROM Agents;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--show the agents table before delete it
+SELECT * FROM Agents' at line 1
+mysql> DELETE FROM Agents WHERE city = "Springfield";
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`zguan33assign2db`.`DealInfo`, CONSTRAINT `DealInfo_ibfk_2` FOREIGN KEY (`agentID`) REFERENCES `Agents` (`agentID`))
+mysql> SELECT * FROM Agents;
++---------+-----------+-----------+-------------+----------------------+
+| agentID | firstName | lastName  | city        | commissionPercentage |
++---------+-----------+-----------+-------------+----------------------+
+| 11      | Regis     | Philbin   | Boston      |                   33 |
+| 12      | Rosie     | Cox       | Ottawa      |                   50 |
+| 22      | Courtney  | Cox       | New York    |                   25 |
+| 33      | David     | Letterman | Bedrock     |                  100 |
+| 66      | Rosie     | ODonnell  | Ottawa      |                  100 |
+| 88      | Zijie     | Guan      | Harbin      |                  100 |
+| 99      | Hugh      | Grant     | Springfield |                   16 |
++---------+-----------+-----------+-------------+----------------------+
+7 rows in set (0.00 sec)
+
+mysql> -- the row for cit y is springfield is n[K[K[K was not deleted becas[Kuse it hav[Ks foreign  key that can not be deleted[K;
+mysql> \q
+Bye
+]0;centos@cs3319-vm069:~/assignment2[centos@cs3319-vm069 assignment2]$ exit
+exit
+
+Script done on Tue 06 Nov 2018 08:10:51 PM UTC
