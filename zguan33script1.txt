@@ -1,0 +1,81 @@
+Script started on Tue 06 Nov 2018 07:45:25 PM UTC
+]0;centos@cs3319-vm069:~/assignment2[?1034h[centos@cs3319-vm069 assignment2]$ exitdate[1Ppwdexitmysql -u root -pcs3319
+Warning: Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 29
+Server version: 5.6.42 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop database if exists zguan33assign2db;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> create database zguan33assign2db;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use zguan33assign2db;
+Database changed
+mysql> show tables; 
+Empty set (0.00 sec)
+
+mysql> create table Product(productID varchar(2) not null,description varchar(20 ),costPerItem varchar(20),quantity varchar(50) not null,primary key(productID)); 
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Agents(agentID varchar(2) not null,firstName varchar(30) not  null,lastName varchar(30) not null,city varchar(15) not null,commissionPercenta ge INT not null,primary key(agentID));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table Customer(customerID varchar(2) not null,firstName varchar(30 ) not null,lastNAME varchar(30) not null,city varchar(15) not null,phoneNumber v archar(40) not null,primary key(customerID));
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> 
+mysql> create table DealInfo(dealinfoID varchar(2) not null,customerID varchar(2 ) not null,agentID varchar(2) not null,primary key(dealinfoID),foreign key(custo merID) references Customer(customerID),foreign key(agentID) references Agents(ag entID));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> create table Purchase(purchaseID varchar(2) not null,customerID varchar(2 ) not null,productID varchar(2) not null,quantity INT,primary key(purchaseID),fo reign key(customerID) references Customer(customerID),foreign key(productID) ref erences Product(productID));
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| zguan33assign2db   |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_zguan33assign2db |
++----------------------------+
+| Agents                     |
+| Customer                   |
+| DealInfo                   |
+| Product                    |
+| Purchase                   |
++----------------------------+
+5 rows in set (0.00 sec)
+
+mysql> \q
+Bye
+]0;centos@cs3319-vm069:~/assignment2[centos@cs3319-vm069 assignment2]$ exit
+exit
+
+Script done on Tue 06 Nov 2018 07:47:36 PM UTC
